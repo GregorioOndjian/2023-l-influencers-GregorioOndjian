@@ -23,6 +23,7 @@ seguidoresTotales(Persona,CantSeguidores):-
     
 
 influencer(Persona):-
+    persona(Persona),
     seguidoresTotales(Persona,CantSeguidores),
     CantSeguidores > 10000.
 
@@ -96,4 +97,21 @@ participaEn(Usuario1,Usuario2):-
     
     
 %6
+
+
+
+
+caminoALaFama(Usuario):-
+    colaboran(Famoso, Usuario),
+    Famoso \= Usuario,
+    not(influencer(Usuario)),
+    tieneFama(Famoso).
+
+tieneFama(Usuario):-
+    influencer(Usuario).
+tieneFama(Usuario):-
+    caminoALaFama(Usuario).
+
+    
+
 
